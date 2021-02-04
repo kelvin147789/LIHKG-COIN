@@ -1,6 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 .App {
   text-align: center;
+  font-family: 'VT323', monospace;
 }
+
+
 
 .App-logo {
   height: 40vmin;
@@ -35,4 +40,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+div {
+  margin-top: 1rem;
+}
+
+.contractAddress{
+  color: #0DAD6B;
+}
+
+.balance{
+  color:#0D34AD;
 }
