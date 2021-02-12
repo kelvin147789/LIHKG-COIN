@@ -60,7 +60,7 @@ function App() {
       await setlihkgCoinAddress(lihkgCoinAdd);
       console.log(lihkgCoin._address)
 
-      let lihkgCoinBalance = await lihkgCoin.methods.balanceOf(accounts[0]).call()
+      const lihkgCoinBalance = await lihkgCoin.methods.balanceOf(accounts[0]).call()
       await setlihkgCoingBalances(lihkgCoinBalance/uint256)
 
       setDeployed(true)
@@ -98,6 +98,7 @@ const claimLIHKGC = async()=> {
      
     })
     console.log(lihkgCoinAddress)
+    
   }
   
 }
@@ -112,6 +113,7 @@ const agree5DemandNot1Less = async()=> {
      
     })
     console.log('Agree 5 Demand Not 1 Less')
+
   }
   
 }
