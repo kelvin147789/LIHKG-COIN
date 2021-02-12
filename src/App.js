@@ -21,7 +21,7 @@ function App() {
    const [lihkgCoinAddress,setlihkgCoinAddress] = useState("");
    const [lihkgCoins,setlihkgCoins] = useState();
    let [lihkgCoinBalances,setlihkgCoingBalances] = useState();
-   const [uint256,setuint256] = useState(100000000000000000);
+   const [uint256,setuint256] = useState(1000000000000000000);
 
    // State
  
