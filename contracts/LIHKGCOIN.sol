@@ -43,7 +43,7 @@ contract LIHKGCOIN {
    function claimLIHKGC() public  returns (bool)
    {
        require(fiveDemandsNotOneLess[msg.sender] && claimed[msg.sender] == false);
-       transfer(msg.sender,1000000000000000000);
+       transfer(msg.sender,7000000000000000000);
        claimed[msg.sender] = true;
    }
  

@@ -21,6 +21,7 @@ function App() {
    const [lihkgCoinAddress,setlihkgCoinAddress] = useState("");
    const [lihkgCoins,setlihkgCoins] = useState();
    let [lihkgCoinBalances,setlihkgCoingBalances] = useState();
+   const [uint256,setuint256] = useState(100000000000000000);
 
    // State
  
@@ -52,7 +53,7 @@ function App() {
      {
        const lihkgCoin = await new web3js.eth.Contract(LIHKGCOIN.abi,lihkgCoinData.address)
        console.log(lihkgCoin)
-      setlihkgCoins(lihkgCoins)
+      setlihkgCoins(lihkgCoin)
 
 
       let lihkgCoinAdd = lihkgCoin._address;
@@ -60,7 +61,7 @@ function App() {
       console.log(lihkgCoin._address)
 
       let lihkgCoinBalance = await lihkgCoin.methods.balanceOf(accounts[0]).call()
-      setlihkgCoingBalances(lihkgCoinBalance/100000000000000000)
+      setlihkgCoingBalances(lihkgCoinBalance/uint256)
 
       setDeployed(true)
       
@@ -85,6 +86,35 @@ function App() {
  const refreshPage = ()=> {
    window.location.reload(false);
  }
+
+
+//  Contract Method
+const claimLIHKGC = async()=> {
+
+  if (lihkgCoins)
+  {
+    lihkgCoins.methods.claimLIHKGC().send({
+      from: account
+     
+    })
+    console.log('claim LIHKGC')
+  }
+  
+}
+
+
+const agree5DemandNot1Less = async()=> {
+
+  if (lihkgCoins)
+  {
+    lihkgCoins.methods.agreeStatement().send({
+      from: account
+     
+    })
+    console.log('Agree 5 Demand Not 1 Less')
+  }
+  
+}
  
 
 
@@ -114,11 +144,28 @@ function App() {
     <div class="balance">
        LIHKGCOIN Balances:
     </div>
+
     <div >
       {lihkgCoinBalances}
     </div>
+
+
     <div>
-      {}
+    <div class="buttons">
+  <div class="container"onClick={agree5DemandNot1Less} >
+      <i class="btn effect04" data-sm-link-text="缺一不可" ><span>五大訴求</span></i>
+  </div>
+</div>
+    </div>
+
+   
+
+    <div>
+    <div class="buttons">
+  <div class="container"onClick={claimLIHKGC} >
+      <i class="btn effect04" data-sm-link-text="請先同意五大訴求" ><span>Claim LIHKGC</span></i>
+  </div>
+</div>
     </div>
    
     
