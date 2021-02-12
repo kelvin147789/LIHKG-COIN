@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.8.0;
 
+
+
+
 contract LIHKGCOIN {
   string public constant name = "Lihkgcoin";
    string public constant symbol = "LIHKGC";
@@ -29,6 +32,8 @@ contract LIHKGCOIN {
   constructor() public { 
    totalSupply_ = totalSupply();
    balances[msg.sender] = 1000000000000000000000000;
+   uint256 claimReward = 7000000000000000000;
+   
    } 
  
  
@@ -38,13 +43,17 @@ contract LIHKGCOIN {
        address user;
        user = msg.sender;
        fiveDemandsNotOneLess[user] = true;
+      
    }
  
-   function claimLIHKGC() public  returns (bool)
+   function claimLIHKGC() public  payable returns (bool)
    {
-       require(fiveDemandsNotOneLess[msg.sender] && claimed[msg.sender] == false);
-       transfer(msg.sender,7000000000000000000);
-       claimed[msg.sender] = true;
+      
+    uint256 claimAmount =   7000000000000000000;
+    require(fiveDemandsNotOneLess[msg.sender] == true && claimed[msg.sender] == false);
+    balances[msg.sender] += claimAmount;
+    emit Transfer(address(this), msg.sender, claimAmount);
+    claimed[msg.sender] = true;
    }
  
  
