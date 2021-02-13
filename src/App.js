@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import {BrowserRouter,Route} from "react-router-dom";
+import {HashRouter,Route, Switch} from "react-router-dom";
 import lihkgIcon from './Media/lihkg.png';
 import './App.css';
 
@@ -148,13 +148,17 @@ const agree5DemandNot1Less = async()=> {
 
   return (
    
-      <BrowserRouter>
+      <HashRouter>
        <div className="App">
+         <Switch>
          <Route exact path="/" component={Home}/>
          <Route path="/Setting" component={Setting}/>
+
+         </Switch>
+        
         
       </div>
-      </BrowserRouter>
+      </HashRouter>
 
 
 
