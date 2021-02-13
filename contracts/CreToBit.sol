@@ -3,53 +3,59 @@ pragma solidity >=0.4.22 <0.8.0;
 
 import "./LIHKGCOIN.sol";
 
-contract CTB 
+contract CreToBit 
 {
     LIHKGCOIN lihkgc;
+
+    // supply according to ico eth ,all remaining would be burn
+
+    // LIHKGC as governance token
 
    
 
   address public owner;
+  string public name = "CreToBit";
   
   mapping(address=> uint256) public depositedCTB;
   mapping(address=> uint256) public depositedETH;
   uint256 public debitFactor = 900000000000000000;
   uint256 public creditFactor = 1100000000000000000;
   uint256 public governanceFactor = 10000000000000000;
+
+  uint256 public ethtouint256 = 1000000000000000000;
+  uint256 public uint256toeth = 1;
+  
   address lihkgcoin_address = address(lihkgc);
+  
+
+  
+
+  
+
+  
+  
   
  constructor(LIHKGCOIN _lihkgcoin) public
   {
       lihkgc = _lihkgcoin;
-      owner = msg.sender;
-     
-     
+      owner = msg.sender;  
+      
   }
-  
-  
 
-  function returnLIHKGC()public view returns (uint256)
-    {
-        uint256 amountOFLIHKG = lihkgc.balanceOf(address(this));
-        return amountOFLIHKG;
+  function totalETH() public view returns (uint256)
+    {   
+       
+        // return totalDepositedETH;
     }
 
+  
+  
+ 
+
   function borrowETH(address payable _address,uint256 _amount,address payable ctbAddress) payable external{
-      
-      require(lihkgc.balanceOf(_address) > 0 && depositedETH[_address] >= 0 );
-      lihkgc.transfer(address(this), _amount);
-      depositedCTB[_address] += _amount;
-      ctbAddress.transfer(_amount * debitFactor);
-      depositedETH[_address] -= _amount;
   }
 
   function paybackETH(address payable _address,uint256 _amount) payable public {
-      require(_amount >= depositedETH[_address] * creditFactor,"Please deposit enough ETH,1.1 * orginalCTB") ;
-      _address.transfer(_amount);
-      depositedETH[_address] += _amount;
-      lihkgc.transfer(_address, _amount);
-      depositedCTB[msg.sender] -= _amount;
-      
   }
 
   function adjustDebitFactor(uint256 _amount) public payable{

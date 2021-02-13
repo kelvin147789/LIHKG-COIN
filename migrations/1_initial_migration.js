@@ -1,6 +1,7 @@
 const LIHKGCOIN = artifacts.require("LIHKGCOIN");
 const LIHKGCSTAKE = artifacts.require("LIHKGCSTAKE");
-const CTB = artifacts.require("CTB");
+const CreToBit = artifacts.require("CreToBit");
+const ICO = artifacts.require("ICO");
 
 module.exports = async function (deployer) {
   await deployer.deploy(LIHKGCOIN);
@@ -11,8 +12,9 @@ module.exports = async function (deployer) {
 
   await lihkgcoin.transfer(lihkgstake.address,'500000000000000000000')
 
-  await deployer.deploy(CTB,lihkgcoin.address);
-  const ctb = await CTB.deployed();
+  await deployer.deploy(CreToBit,lihkgcoin.address);
 
-  await lihkgcoin.transfer(ctb.address,'500000000000000000000000')
+  await deployer.deploy(ICO,lihkgcoin.address);
+  const ico = await ICO.deployed();
+  await lihkgcoin.transfer(ico.address,'50000000000000000000000')
 };
