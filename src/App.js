@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-
+import {BrowserRouter,Route} from "react-router-dom";
 import lihkgIcon from './Media/lihkg.png';
 import './App.css';
 
@@ -10,6 +10,21 @@ import { MetaMaskButton,Flex, Box, EthAddress,Loader,Select,Field} from 'rimble-
 
 // for const LIHKGCOIN= new web3.eth.Contract()
 import LIHKGCOIN from './abi/LIHKGCOIN.json'
+import LIHKGCSTAKE from './abi/LIHKGCSTAKE.json'
+
+const Home = (props)=> {
+  return(
+    <div>Home</div>
+  )
+}
+const Setting = (props)=> {
+  return(
+    <div>Setting</div>
+  )
+}
+
+
+
 
 
 function App() {
@@ -19,7 +34,9 @@ function App() {
    let [account,setAccount] = useState("CONNECT YOUR WALLET");
    let [deployed,setDeployed] = useState(false);
    const [lihkgCoinAddress,setlihkgCoinAddress] = useState("");
+   const [lihkgcStakeAddress,setlihkgcStakeAddress] = useState("");
    const [lihkgCoins,setlihkgCoins] = useState();
+   const [lihkgcStake,setlihkgcStake] = useState();
    let [lihkgCoinBalances,setlihkgCoingBalances] = useState();
    const [uint256,setuint256] = useState(1000000000000000000);
 
@@ -52,34 +69,42 @@ function App() {
      if (lihkgCoinData && !deployed)
      {
        const lihkgCoin = await new web3js.eth.Contract(LIHKGCOIN.abi,lihkgCoinData.address)
-       console.log(lihkgCoin)
+       console.log("LIHKGC",lihkgCoin)
       setlihkgCoins(lihkgCoin)
+
+      
 
 
       let lihkgCoinAdd = lihkgCoin._address;
       await setlihkgCoinAddress(lihkgCoinAdd);
-      console.log(lihkgCoin._address)
+      console.log("lihkgcoin address", lihkgCoin._address)
 
       const lihkgCoinBalance = await lihkgCoin.methods.balanceOf(accounts[0]).call()
       await setlihkgCoingBalances(lihkgCoinBalance/uint256)
 
       setDeployed(true)
-      
-     }
 
-     
+        const lihkgcStakeData = await LIHKGCSTAKE.networks[networkID]
+        if (lihkgcStakeData)
+        {
+            const lihkgcStake = await new web3js.eth.Contract(LIHKGCSTAKE.abi,lihkgcStakeData.address)
+            console.log("Stake Contract",lihkgcStake)
+            setlihkgcStake(lihkgcStake)
 
-
-     
+        let lihkgcStakeAdd = lihkgcStake._address;
+        console.log("Stake address", lihkgcStakeAdd)
+        setlihkgcStakeAddress(lihkgcStakeAdd)
+        
+        }
     
 
      
-   }
- 
- 
-   
+     }
 
-   
+     
+     
+   }
+
    return false;
  }
  
@@ -122,65 +147,30 @@ const agree5DemandNot1Less = async()=> {
 
 
   return (
-    <div className="App">
-       <h1>LIHKG COIN</h1>
-      <div></div>
-       <img src={lihkgIcon} alt="Lihkg Icon"/>
-
-
-       {/* Connect Metamsk wallet */}
-
-    <div className="metaMaskButton">
-    <div>MetaMask Wallet Connect:</div>
-    
-    <MetaMaskButton className="spacingTop" onClick={ethEnabled,refreshPage}>Connect with Wallet</MetaMaskButton>
-    <div>
-    {account}
-    </div>
-    <div class="contractAddress">
-      Contract Address: 
+   
+      <BrowserRouter>
+       <div className="App">
+         <Route exact path="/" component={Home}/>
+         <Route path="/Setting" component={Setting}/>
+        
       </div>
-      <div>
-      {lihkgCoinAddress}
-    </div>
-    <div class="balance">
-       LIHKGCOIN Balances:
-    </div>
-
-    <div >
-      {lihkgCoinBalances}
-    </div>
+      </BrowserRouter>
 
 
-    <div>
-    <div class="buttons">
-  <div class="container"onClick={agree5DemandNot1Less} >
-      <i class="btn effect04" data-sm-link-text="缺一不可" ><span>五大訴求</span></i>
-  </div>
-</div>
-    </div>
-
-   
-
-    <div>
-    <div class="buttons">
-  <div class="container"onClick={claimLIHKGC} >
-      <i class="btn effect04" data-sm-link-text="請先同意五大訴求" ><span>Claim LIHKGC</span></i>
-  </div>
-</div>
-    </div>
-   
-    
-
-    {/* {account} */}
-    </div>
-    
 
 
-{/* Connect Metamsk wallet */}
+
+
+
+
+
+
      
-    </div>
+   
   );
 }
+
+
+
 
 export default App;

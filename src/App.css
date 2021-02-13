@@ -117,7 +117,7 @@ p {
   justify-content: center;
   text-align: center;
   background-color: #FFF;
-  padding:  40px 0px;
+  padding:  0px 0px;
   width: 240px;
 }
 
@@ -203,3 +203,6 @@ p {
           transform: translateY(0) scale(1,1);
 }
 
+.stakeAddress{
+  color: #D9390E;
+}

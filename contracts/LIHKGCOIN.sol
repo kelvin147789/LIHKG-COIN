@@ -3,11 +3,10 @@ pragma solidity >=0.4.22 <0.8.0;
 
 
 
-
 contract LIHKGCOIN {
   string public constant name = "Lihkgcoin";
-   string public constant symbol = "LIHKGC";
-   uint8 public constant decimals = 18;
+  string public constant symbol = "LIHKGC";
+  uint8 public constant decimals = 18;
  
    string public fiveDemandsNotOneLessStatement= "1.Complete withdrawal of the extradition bill from the legislative process 2.Retraction of the riot characterisation 3.Release and exoneration of arrested protesters 4.Establishment of an independent commission of inquiry into police conduct and use of force during the protests 5.Resignation of Carrie Lam and the implementation of universal suffrage for Legislative Council elections and for the election of the chief executive";
  
