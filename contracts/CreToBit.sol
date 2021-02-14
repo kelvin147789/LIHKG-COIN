@@ -26,9 +26,11 @@ contract CreToBit
   mapping(address=> uint256) public depositedETH;
   uint256 public debitFactor = 900000000000000000;
   uint256 public creditFactor = 1100000000000000000;
-  uint256 public governanceFactor = 10000000000000000;
+  uint256 public governanceFactor = 500000000000000000;
   uint256 public icoLateRate = 950000000000000000;
   uint256 public icoEnd = block.timestamp + 30 days;
+  uint256 public totalDepositedCTB;
+  uint256 public totalDepositedETH;
 
   uint256 public ethtouint256 = 1000000000000000000;
   uint256 public uint256toeth = 1;
@@ -36,8 +38,12 @@ contract CreToBit
   address lihkgcoin_address = address(lihkgc);
 //   uint256 public testNumber = SafeMath.sub(1, 2);
   uint256 public borrowFactor = 100000000000000000;
+  uint256 public boostBorrowFactorIndex = 500000000000000000;
+  uint256 public boostBorrowFactor2x = 2000000000000000000;
   uint256 public timelock = 2 minutes;
   mapping (address => uint256) public nextAvailablePayBackTime;
+
+
 
 
 
@@ -84,6 +90,12 @@ contract CreToBit
 
   }
 
+  function burnToken(uint256 _amount) public {
+      require(msg.sender == owner);
+      emit Burn (msg.sender,_amount);
+      emit Transfer(msg.sender, address(0), _amount);
+  }
+
   function totalETH() public view returns (uint256)
     {   
         // return totalDepositedETH;
@@ -107,20 +119,35 @@ contract CreToBit
       nextAvailablePayBackTime[_address] + timelock;
   }
 
-  function paybackETH(address payable _address,uint256 _amount) payable public {
-      require(block.timestamp > nextAvailablePayBackTime[_address]);
+  function paybackETH(address payable _address,address payable _to,uint256 _amount) payable public {
+      uint256 depositETH = _amount;
+      require(block.timestamp > nextAvailablePayBackTime[_address] && depositETH >= depositedCTB[msg.sender] * creditFactor);
+      _to.transfer(depositETH);
+      depositedETH[_address] += depositETH;
+      totalDepositedETH += depositETH;
+      CreToBit.transfer(_address, depositETH);
+      depositedCTB[_address] -= depositETH;
+      totalDepositedCTB -= depositETH;
+
+
+      
       
       _address.transfer(_amount);
   }
 
   function adjustDebitFactor(uint256 _amount) public payable{
-      require(lihkgc.balanceOf((msg.sender)) >= lihkgc.balanceOf(lihkgcoin_address) * governanceFactor);
+      require(lihkgc.balanceOf((msg.sender)) >= lihkgc.balanceOf(lihkgcoin_address) * governanceFactor || msg.sender == owner);
       debitFactor == _amount;
   }
 
   function adjustCrebitFactor(uint256 _amount) public payable{
-      require(lihkgc.balanceOf((msg.sender)) >= lihkgc.balanceOf(lihkgcoin_address) * governanceFactor);
+      require(lihkgc.balanceOf((msg.sender)) >= lihkgc.balanceOf(lihkgcoin_address) * governanceFactor || msg.sender == owner);
       creditFactor == _amount;
+  }
+
+  function boostBorrowFactor() public {
+      require(msg.sender == owner && totalDepositedETH * boostBorrowFactorIndex >= totalDepositedCTB * borrowFactor);
+      borrowFactor = borrowFactor * boostBorrowFactor2x;
   }
 
 
