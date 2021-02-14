@@ -26,6 +26,15 @@ contract CreToBit
   uint256 public uint256toeth = 1;
   
   address lihkgcoin_address = address(lihkgc);
+//   uint256 public testNumber = SafeMath.sub(1, 2);
+  uint256 public borrowFactor = 100000000000000000;
+  uint256 public timelock = 2 minutes;
+  mapping (address => uint256) public nextAvailablePayBackTime;
+
+
+
+ 
+ 
   
 
   
@@ -49,13 +58,19 @@ contract CreToBit
     }
 
   
+
+  
   
  
 
   function borrowETH(address payable _address,uint256 _amount,address payable ctbAddress) payable external{
+      nextAvailablePayBackTime[_address] + timelock;
   }
 
   function paybackETH(address payable _address,uint256 _amount) payable public {
+      require(block.timestamp > nextAvailablePayBackTime[_address]);
+      
+      _address.transfer(_amount);
   }
 
   function adjustDebitFactor(uint256 _amount) public payable{
@@ -74,3 +89,8 @@ contract CreToBit
 
 
 }
+
+
+
+ 
+
