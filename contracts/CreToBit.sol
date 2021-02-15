@@ -13,6 +13,7 @@ contract CreToBit
 
  event Transfer(address indexed from, address indexed to, uint tokens);
  event Burn(address indexed burner, uint256 value);
+ event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
 
   address public owner;
   string public name = "CreToBit";
@@ -43,6 +44,10 @@ contract CreToBit
   uint256 public preboostOffsetFactor = 900000000000000000;
   uint256 public timelock = 2 minutes;
   mapping (address => uint256) public nextAvailablePayBackTime;
+
+  mapping(address => mapping (address => uint256)) allowed;
+
+  
 
 
 
@@ -183,15 +188,33 @@ contract CreToBit
     emit Transfer(address(0), address(this), amount);
 }
 
+    function approve(address delegate, uint numTokens) public returns (bool) {
+       allowed[msg.sender][delegate] = numTokens;
+       emit Approval(msg.sender, delegate, numTokens);
+       return true;
+   }
 
-   
 
+   function transferFrom(address _owner, address buyer, uint numTokens) public returns (bool) {
+       require(numTokens <= balances[_owner]);   
+       require(numTokens <= allowed[_owner][msg.sender]);
   
+       balances[_owner] = balances[_owner]-= numTokens;
+       allowed[_owner][msg.sender] = allowed[_owner][msg.sender] -= numTokens;
+       balances[buyer] = balances[buyer] += numTokens;
+       emit Transfer(_owner, buyer, numTokens);
+       return true;
+   }
 
-    
 
+      
 
 }
+
+
+
+
+
 
 
 
