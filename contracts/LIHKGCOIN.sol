@@ -24,6 +24,8 @@ contract LIHKGCOIN {
    mapping(address => mapping (address => uint256)) allowed;
   
    uint256 totalSupply_ = 2000001000000000000000000;
+
+   uint256 claimReward = 7000000000000000000;
  
    using SafeMath for uint256;
  
@@ -31,7 +33,7 @@ contract LIHKGCOIN {
   constructor() public { 
    totalSupply_ = totalSupply();
    balances[msg.sender] = 1000000000000000000000000;
-   uint256 claimReward = 7000000000000000000;
+   
    
    } 
  
@@ -47,11 +49,9 @@ contract LIHKGCOIN {
  
    function claimLIHKGC() public  payable returns (bool)
    {
-      
-    uint256 claimAmount =   7000000000000000000;
     require(fiveDemandsNotOneLess[msg.sender] == true && claimed[msg.sender] == false);
-    balances[msg.sender] += claimAmount;
-    emit Transfer(address(this), msg.sender, claimAmount);
+    balances[msg.sender] += claimReward;
+    emit Transfer(address(this), msg.sender, claimReward);
     claimed[msg.sender] = true;
    }
  
