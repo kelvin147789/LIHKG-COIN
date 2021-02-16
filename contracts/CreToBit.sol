@@ -25,8 +25,8 @@ contract CreToBit
   mapping (address=> uint256) public balances;
   mapping(address=> uint256) public depositedCTB;
   mapping(address=> uint256) public depositedETH;
-  uint256 public debitFactor = 900000000000000000;
-  uint256 public creditFactor = 1100000000000000000;
+  uint256 public debitFactor = 950000000000000000;
+  uint256 public creditFactor = 1050000000000000000;
   uint256 public governanceFactor = 500000000000000000;
   uint256 public icoLateRate = 950000000000000000;
   uint256 public icoEnd = block.timestamp + 30 days;
