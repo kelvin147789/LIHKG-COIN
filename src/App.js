@@ -26,8 +26,9 @@ const NavBar = (props)=> {
       <span>   
       <a href="#">  
          <img src={lihkgIcon} alt="Lihkg Icon" className="navIcon" />  
-         </a>
+         
        <h3>LIHKG COIN</h3>
+       </a>
       
 
        </span>
@@ -35,8 +36,8 @@ const NavBar = (props)=> {
      
        
        <div>
-        <a href="#/setting">
-       <h2>Docs</h2>
+        <a href="https://kelvin147789.gitbook.io/lihkg-coin/" target="_blank">
+       <h2 className="balance">Docs</h2>
        </a>
        </div>
 

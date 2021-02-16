@@ -212,14 +212,16 @@ p {
 
   margin-bottom: 3rem;
   justify-content:space-between;
+  border: 3px solid black; 
 
 }
 
 
 .navIcon {
-  
+  margin-top:0.6rem;
   height:1.5rem;
-  opacity: 0.8;
+  opacity: 0.95;
+  
   
   
   
@@ -244,6 +246,8 @@ ul {
 .navBarWallet {
   display: flex;
   flex-direction: row;
+  margin: 0.1rem;
+  
   
   
 }
@@ -263,6 +267,6 @@ ul {
 
 a {
   text-decoration: none;
-  color:blue;
+  color:black;
   
 }
