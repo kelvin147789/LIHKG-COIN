@@ -113,9 +113,10 @@ contract CreToBit
         return totalSupply_;
    }
 
-  
+   function allowance(address _owner, address delegate) public view returns (uint) {
+       return allowed[_owner][delegate];
+   }
 
-  
   
  function balanceOf(address tokenOwner) public view returns (uint) {
        return balances[tokenOwner];
@@ -169,8 +170,6 @@ contract CreToBit
   }
 
 
-
-
   function transfer(address receiver, uint numTokens) public returns (bool) {
        require(numTokens <= balances[msg.sender]);
        balances[msg.sender] = balances[msg.sender]-=numTokens;
@@ -205,9 +204,6 @@ contract CreToBit
        emit Transfer(_owner, buyer, numTokens);
        return true;
    }
-
-
-      
 
 }
 
