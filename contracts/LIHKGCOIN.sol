@@ -4,6 +4,9 @@ pragma solidity >=0.4.22 <0.8.0;
 
 
 contract LIHKGCOIN {
+
+
+    // *** TO DO: ICO
   string public constant name = "Lihkgcoin";
   string public constant symbol = "LIHKGC";
   uint8 public constant decimals = 18;

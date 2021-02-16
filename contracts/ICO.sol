@@ -1,26 +1,26 @@
-pragma solidity >=0.4.22 <0.8.0;
-// SPDX-License-Identifier: MIT
+// pragma solidity >=0.4.22 <0.8.0;
+// // SPDX-License-Identifier: MIT
 
-// Unnecessary, can do the ico within the contract
+// // Unnecessary, can do the ico within the contract
 
-import "./LIHKGCOIN.sol";
+// import "./LIHKGCOIN.sol";
 
-contract ICO {
+// contract ICO {
 
 
-     LIHKGCOIN lihkgc;
+//      LIHKGCOIN lihkgc;
 
-    constructor(LIHKGCOIN _lihkgcoin) public
-  {
-      lihkgc = _lihkgcoin;
-      owner = msg.sender;  
-  }
+//     constructor(LIHKGCOIN _lihkgcoin) public
+//   {
+//       lihkgc = _lihkgcoin;
+//       owner = msg.sender;  
+//   }
 
-    string public name = "LIHKGC ICO";
-    address public owner;
+//     string public name = "LIHKGC ICO";
+//     address public owner;
 
-    // Receive ETH
+//     // Receive ETH
 
-    // Send LIHKGC according to remaining LIHKGC in ICO contract
+//     // Send LIHKGC according to remaining LIHKGC in ICO contract
 
-}
+// }

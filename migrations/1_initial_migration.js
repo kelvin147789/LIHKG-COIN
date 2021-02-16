@@ -12,15 +12,15 @@ module.exports = async function (deployer) {
 
   await lihkgcoin.transfer(lihkgstake.address,'500000000000000000000')
 
-  await deployer.deploy(CreToBit,lihkgcoin.address);
-  const ctb = await CreToBit.deployed();
+  // await deployer.deploy(CreToBit,lihkgcoin.address);
+  // const ctb = await CreToBit.deployed();
 
-  await ctb.transfer(ctb.address,'1000000000000000000')
+  // await ctb.transfer(ctb.address,'1000000000000000000')
   
   
 
-  await deployer.deploy(ICO,lihkgcoin.address);
-  const ico = await ICO.deployed();
-  await lihkgcoin.transfer(ico.address,'50000000000000000000000')
+  // await deployer.deploy(ICO,lihkgcoin.address);
+  // const ico = await ICO.deployed();
+  // await lihkgcoin.transfer(ico.address,'50000000000000000000000')
   
 };
