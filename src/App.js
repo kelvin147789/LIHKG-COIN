@@ -12,7 +12,66 @@ import { MetaMaskButton,Flex, Box, EthAddress,Loader,Select,Field} from 'rimble-
 import LIHKGCOIN from './abi/LIHKGCOIN.json'
 import LIHKGCSTAKE from './abi/LIHKGCSTAKE.json'
 
+
+const NavBar = (props)=> {
+
+  return (
+    <div className="navBar">
+
+      
+      <ul>
+       
+       <div className="navBarMain">
+      
+      <span>   
+      <a href="#">  
+         <img src={lihkgIcon} alt="Lihkg Icon" className="navIcon" />  
+         </a>
+       <h3>LIHKG COIN</h3>
+      
+
+       </span>
+     
+     
+       
+       <div>
+        <a href="#/setting">
+       <h2>Docs</h2>
+       </a>
+       </div>
+
+       <div>
+         <h2>Hello</h2>
+       </div>
+
+       </div>
+      
+        
+       
+   
+
+      
+          <div className="navBarWallet">    
+          
+          <EthAddress address={props.account} width={0.3}/>    
+            <MetaMaskButton  onClick={props.ethEnabled,props.refreshPage}>Connect with Wallet</MetaMaskButton>   
+          </div>
+
+        
+
+         
+
+      
+       
+      </ul>
+
+    </div>
+  );
+  
+}
+
 const Home = (props)=> {
+  
 
 
     
@@ -21,19 +80,19 @@ const Home = (props)=> {
 
   return(
          <div>
-      <h1>LIHKG COIN</h1>
-      <div></div>
-       <img src={lihkgIcon} alt="Lihkg Icon"/>
+     
+   
+      
 
 
        {/* Connect Metamsk wallet */}
 
     <div className="metaMaskButton">
-    <div>MetaMask Wallet Connect:</div>
+  
     <div>
-    <MetaMaskButton className="spacingTop" onClick={props.ethEnabled,props.refreshPage}>Connect with Wallet</MetaMaskButton></div>
+    </div>
    
-    {props.account}
+   
   
     <div class="contractAddress">
       LIHKGC Address: 
@@ -216,6 +275,14 @@ const agree5DemandNot1Less = async()=> {
    
       <HashRouter>
        <div className="App">
+
+         <NavBar  
+         refreshPage={refreshPage}
+         ethEnabled={ethEnabled}
+         account={account}
+         />
+
+       
          <Switch>
          <Route exact path="/" render={(props)=> (
          <Home 

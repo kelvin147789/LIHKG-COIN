@@ -10,7 +10,7 @@ module.exports = async function (deployer) {
   await deployer.deploy(LIHKGCSTAKE,lihkgcoin.address);
   const lihkgstake = await LIHKGCSTAKE.deployed();
 
-  await lihkgcoin.transfer(lihkgstake.address,'500000000000000000000')
+  await lihkgcoin.transfer(lihkgstake.address,'50000000000000000000000')
 
   // await deployer.deploy(CreToBit,lihkgcoin.address);
   // const ctb = await CreToBit.deployed();

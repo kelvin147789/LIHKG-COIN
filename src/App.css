@@ -6,6 +6,9 @@
 .App {
   text-align: center;
   font-family: 'VT323', monospace;
+  padding:0.5rem;
+ 
+  height: 100%;
 }
 
 
@@ -25,7 +28,7 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -45,9 +48,7 @@
   }
 }
 
-div {
-  margin-top: 1rem;
-}
+
 
 .contractAddress{
   color: #0DAD6B;
@@ -93,7 +94,7 @@ p {
   text-align: left;
   color: #444;
   letter-spacing: 0.05em;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   margin: 0 0 2em;
 }
 
@@ -141,7 +142,7 @@ p {
 .btn {
   letter-spacing: 0.1em;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 45px;
   max-width: 160px;
@@ -205,4 +206,63 @@ p {
 
 .stakeAddress{
   color: #D9390E;
+}
+
+.navBar {
+
+  margin-bottom: 3rem;
+  justify-content:space-between;
+
+}
+
+
+.navIcon {
+  
+  height:1.5rem;
+  opacity: 0.8;
+  
+  
+  
+  
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+.topRight {
+  
+  position:relative;
+  top:3;
+  overflow:visible;
+  right:2;
+}
+
+.navBarWallet {
+  display: flex;
+  flex-direction: row;
+  
+  
+}
+
+.navBarMain {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  justify-items: left;
+  justify-self: self-start;
+}
+
+.span {
+  display: flex;
+  flex-direction: row;
+}
+
+a {
+  text-decoration: none;
+  color:blue;
+  
 }
