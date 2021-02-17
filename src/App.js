@@ -54,8 +54,8 @@ const NavBar = (props)=> {
       
           <div className="navBarWallet">    
           
-          <EthAddress address={props.account} width={0.3}/>    
-            <MetaMaskButton  onClick={props.ethEnabled,props.refreshPage}>Connect with Wallet</MetaMaskButton>   
+          <EthAddress address={props.account} />    
+            <MetaMaskButton    width= {0.5}onClick={props.ethEnabled,props.refreshPage}>Connect Wallet</MetaMaskButton>   
           </div>
 
         
