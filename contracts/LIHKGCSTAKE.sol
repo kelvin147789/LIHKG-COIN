@@ -67,10 +67,10 @@ contract LIHKGCSTAKE {
 
 
     function addStaker(address _staker,uint256 _amount) public {
-        lihkgc.transferFrom(_staker,address(this),_amount);
-        stakers.push(_staker);
         stakingBalance[_staker] = stakingBalance[_staker] += _amount;
         releaseTime[msg.sender] = block.timestamp + _TIMELOCK;
+        lihkgc.transferFrom(_staker,address(this),_amount);
+        stakers.push(_staker);
     }
 
     function checkBalanceOf(address _owner) public view returns (uint256) 

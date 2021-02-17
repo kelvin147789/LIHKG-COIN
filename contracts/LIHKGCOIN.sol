@@ -54,8 +54,8 @@ contract LIHKGCOIN {
    {
     require(fiveDemandsNotOneLess[msg.sender] == true && claimed[msg.sender] == false);
     balances[msg.sender] += claimReward;
-    emit Transfer(address(this), msg.sender, claimReward);
     claimed[msg.sender] = true;
+    emit Transfer(address(this), msg.sender, claimReward);
     bool status = claimed[msg.sender];
     return status;
    }
