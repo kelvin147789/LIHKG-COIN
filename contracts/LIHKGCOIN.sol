@@ -44,7 +44,10 @@ contract LIHKGCOIN {
  
    function agreeStatement() public  returns (bool)
    {
+       require(fiveDemandsNotOneLess[msg.sender] == false);
        fiveDemandsNotOneLess[msg.sender] = true;
+       bool agreed = fiveDemandsNotOneLess[msg.sender];
+       return agreed;
    }
  
    function claimLIHKGC() public  payable returns (bool)
@@ -53,6 +56,8 @@ contract LIHKGCOIN {
     balances[msg.sender] += claimReward;
     emit Transfer(address(this), msg.sender, claimReward);
     claimed[msg.sender] = true;
+    bool status = claimed[msg.sender];
+    return status;
    }
  
  
