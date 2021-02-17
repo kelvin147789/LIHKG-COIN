@@ -44,10 +44,7 @@ contract LIHKGCOIN {
  
    function agreeStatement() public  returns (bool)
    {
-       address user;
-       user = msg.sender;
-       fiveDemandsNotOneLess[user] = true;
-      
+       fiveDemandsNotOneLess[msg.sender] = true;
    }
  
    function claimLIHKGC() public  payable returns (bool)

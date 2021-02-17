@@ -36,7 +36,7 @@ const NavBar = (props)=> {
      
        
        <div>
-        <a href="https://kelvin147789.gitbook.io/lihkg-coin/" target="_blank">
+        <a href="https://lihkg-coin.gitbook.io/lihkg-coin" target="_blank">
        <h2 className="balance">Docs</h2>
        </a>
        </div>
